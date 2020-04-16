@@ -64,9 +64,6 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
-  // table: {
-  //   minWidth: 650,
-  // },
 }));
 
 function App(props) {
@@ -93,7 +90,12 @@ function App(props) {
   const addTodo = text =>  {
     const newTodos = [...todos, text];
     setTodos(newTodos);
-    console.log(newTodos);
+  }
+
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
   }
 
   const drawer = (
@@ -192,10 +194,14 @@ function App(props) {
         <Grid item xs={12}>
           <List>
             {todos && todos.map((todo, index) => (
-              <ListItem button>
+              <ListItem button key={index}>
                 <ListItemText primary={todo} />
                 <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={() => removeTodo(index)}
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
