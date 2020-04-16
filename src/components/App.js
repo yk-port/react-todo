@@ -13,6 +13,12 @@ import {
   Typography,
   TextField,
   Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   makeStyles,
   useTheme
 } from '@material-ui/core';
@@ -61,6 +67,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  // table: {
+  //   minWidth: 650,
+  // },
 }));
 
 function App(props) {
@@ -183,6 +192,28 @@ function App(props) {
             Save
           </Button>
         </form>
+        <TableContainer>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Todo</TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {todos && todos.map((todo, index) => (
+                <TableRow key={todo.index}>
+                  <TableCell component="th" scope="todo">
+                    {todo}
+                  </TableCell>
+                  <TableCell align="right"></TableCell>
+                  <TableCell align="right"></TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </main>
     </div>
   );
