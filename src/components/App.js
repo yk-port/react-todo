@@ -1,31 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   AppBar,
   CssBaseline,
-  Divider,
   Drawer,
   Hidden,
   IconButton,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   Toolbar,
   Typography,
+  TextField,
+  Button,
   makeStyles,
   useTheme
 } from '@material-ui/core';
+
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import SaveIcon from '@material-ui/icons/Save';
 
 const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '-webkit-fill-available',
+    },
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -45,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
@@ -54,13 +58,19 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  button: {
+    margin: theme.spacing(1),
+  },
 }));
 
 function App(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const [ todoId, setTodoId ] = useState('');
+  const [ value, setValue ] = useState('');
+  const [ mobileOpen, setMobileOpen ] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -102,7 +112,7 @@ function App(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Responsive drawer
+            Todo List
           </Typography>
         </Toolbar>
       </AppBar>
@@ -138,6 +148,21 @@ function App(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        <form className={classes.root} noValidate autoComplete="off">
+          <TextField
+            id="outlined-helperText"
+            label="Helper text"
+            variant="outlined"
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            startIcon={<SaveIcon />}
+          >
+            Save
+          </Button>
+        </form>
       </main>
     </div>
   );
