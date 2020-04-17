@@ -24,7 +24,7 @@ const TodosContextProvider = (props) => {
 
   return (
     <TodosContext.Provider value={{ todos, addTodo, removeTodo, completeTodo }}>
-      {props.chiilren}
+      {props.children}
     </TodosContext.Provider>
   );
 }
