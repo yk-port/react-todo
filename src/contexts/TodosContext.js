@@ -5,8 +5,8 @@ export const TodosContext = createContext();
 const TodosContextProvider = (props) => {
   const [ todos, setTodos ] = useState([]);
 
-  const addTodo = text =>  {
-    const newTodos = [...todos, { text, complete: false }];
+  const addTodo = todoItem =>  {
+    const newTodos = [...todos, { todoItem, complete: false }];
     setTodos(newTodos);
   }
 

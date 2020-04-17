@@ -27,7 +27,7 @@ function TodoList() {
       <List>
         {todos && todos.map((todo, index) => (
           <ListItem button key={index}>
-            <ListItemText primary={todo.text} />
+            <ListItemText primary={todo.todoItem} />
             <Button variant="outlined" size="small" color="default" className={classes.button} onClick={() => completeTodo(index)}>
               {todo.complete ? 'done!!' : 'doning...'}
             </Button>

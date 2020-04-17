@@ -23,13 +23,13 @@ const useStyles = makeStyles(theme => ({
 
 function TodoForm() {
   const { addTodo } = useContext(TodosContext);
-  const [ value, setValue ] = useState('');
+  const [ todoItem, setTodoItem ] = useState('');
   const classes = useStyles();
 
   const handleSubmit = e => {
     e.preventDefault();
-    addTodo(value);
-    setValue('');
+    addTodo(todoItem);
+    setTodoItem('');
   }
 
   return (
@@ -42,8 +42,8 @@ function TodoForm() {
         id="outlined-helperText"
         label="Enter Todo"
         variant="outlined"
-        value={value}
-        onChange={e => setValue(e.target.value)}
+        value={todoItem}
+        onChange={e => setTodoItem(e.target.value)}
       />
       <Button
         variant="contained"
