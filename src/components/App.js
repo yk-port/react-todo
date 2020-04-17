@@ -71,7 +71,6 @@ function App(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  // const [ todoId, setTodoId ] = useState('');
   const [ value, setValue ] = useState('');
   const [ todos, setTodos ] = useState([]);
 
@@ -88,13 +87,19 @@ function App(props) {
   }
 
   const addTodo = text =>  {
-    const newTodos = [...todos, text];
+    const newTodos = [...todos, { text, complete: false }];
     setTodos(newTodos);
   }
 
   const removeTodo = index => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
+    setTodos(newTodos);
+  }
+
+  const completeTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].complete = !newTodos[index].complete;
     setTodos(newTodos);
   }
 
@@ -195,13 +200,12 @@ function App(props) {
           <List>
             {todos && todos.map((todo, index) => (
               <ListItem button key={index}>
-                <ListItemText primary={todo} />
+                <ListItemText primary={todo.text} />
+                <Button variant="outlined" size="small" color="default" className={classes.button} onClick={() => completeTodo(index)}>
+                  {todo.complete ? 'done!!' : 'doning...'}
+                </Button>
                 <ListItemSecondaryAction>
-                  <IconButton
-                    edge="end"
-                    aria-label="delete"
-                    onClick={() => removeTodo(index)}
-                  >
+                  <IconButton edge="end" aria-label="delete" onClick={() => removeTodo(index)}>
                     <DeleteIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
