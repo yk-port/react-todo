@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
+import HeaderBar from './HeaderBar'
 
 import {
-  AppBar,
   CssBaseline,
   Drawer,
   Hidden,
-  IconButton,
   List,
   ListItem,
   ListItemText,
@@ -16,7 +15,6 @@ import {
   makeStyles,
   useTheme
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 300;
 
@@ -108,22 +106,8 @@ function App(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Todo List
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <HeaderBar
+        handleDrawerToggle={handleDrawerToggle} />
       <nav className={classes.drawer} aria-label="mailbox folders">
         <Hidden smUp implementation="css">
           <Drawer
