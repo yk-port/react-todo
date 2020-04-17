@@ -4,21 +4,17 @@ import {
   AppBar,
   CssBaseline,
   Drawer,
+  Grid,
   Hidden,
   IconButton,
   List,
   ListItem,
   ListItemText,
+  ListItemSecondaryAction,
   Toolbar,
   Typography,
   TextField,
   Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   makeStyles,
   useTheme
 } from '@material-ui/core';
@@ -27,6 +23,7 @@ import {
 // import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const drawerWidth = 300;
 
@@ -67,9 +64,6 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
-  // table: {
-  //   minWidth: 650,
-  // },
 }));
 
 function App(props) {
@@ -77,7 +71,6 @@ function App(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  // const [ todoId, setTodoId ] = useState('');
   const [ value, setValue ] = useState('');
   const [ todos, setTodos ] = useState([]);
 
@@ -94,9 +87,20 @@ function App(props) {
   }
 
   const addTodo = text =>  {
-    const newTodos = [...todos, text];
+    const newTodos = [...todos, { text, complete: false }];
     setTodos(newTodos);
-    console.log(newTodos);
+  }
+
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  }
+
+  const completeTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].complete = !newTodos[index].complete;
+    setTodos(newTodos);
   }
 
   const drawer = (
@@ -192,28 +196,23 @@ function App(props) {
             Save
           </Button>
         </form>
-        <TableContainer>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Todo</TableCell>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right"></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {todos && todos.map((todo, index) => (
-                <TableRow key={todo.index}>
-                  <TableCell component="th" scope="todo">
-                    {todo}
-                  </TableCell>
-                  <TableCell align="right"></TableCell>
-                  <TableCell align="right"></TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <Grid item xs={12}>
+          <List>
+            {todos && todos.map((todo, index) => (
+              <ListItem button key={index}>
+                <ListItemText primary={todo.text} />
+                <Button variant="outlined" size="small" color="default" className={classes.button} onClick={() => completeTodo(index)}>
+                  {todo.complete ? 'done!!' : 'doning...'}
+                </Button>
+                <ListItemSecondaryAction>
+                  <IconButton edge="end" aria-label="delete" onClick={() => removeTodo(index)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
       </main>
     </div>
   );
