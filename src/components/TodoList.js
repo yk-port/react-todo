@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { TodosContext } from '../contexts/TodosContext';
 
 import {
   Grid,
@@ -18,7 +19,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function TodoList({ todos, completeTodo, removeTodo }) {
+function TodoList() {
+  const { todos, completeTodo, removeTodo } = useContext(TodosContext);
   const classes = useStyles();
   return (
     <Grid item xs={12}>
