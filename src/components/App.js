@@ -14,7 +14,6 @@ import {
   ListItemSecondaryAction,
   Toolbar,
   Typography,
-  TextField,
   Button,
   makeStyles,
   useTheme
@@ -30,10 +29,6 @@ const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '-webkit-fill-available',
-    },
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {

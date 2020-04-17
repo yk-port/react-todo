@@ -2,13 +2,27 @@ import React, { useState } from 'react';
 
 import {
   TextField,
-  Button
+  Button,
+  makeStyles
 } from '@material-ui/core';
-
 import SaveIcon from '@material-ui/icons/Save';
+
+const useStyles = makeStyles(theme => ({
+  form: {
+    display: 'flex',
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '-webkit-fill-available',
+    },
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 function TodoForm({ addTodo }) {
   const [ value, setValue ] = useState('');
+  const classes = useStyles();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -18,7 +32,7 @@ function TodoForm({ addTodo }) {
 
   return (
     <form
-      className={classes.root}
+      className={classes.form}
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit}>
