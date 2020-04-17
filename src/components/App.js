@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TodoForm from './TodoForm'
 
 import {
   AppBar,
@@ -22,7 +23,6 @@ import {
 // import InboxIcon from '@material-ui/icons/MoveToInbox';
 // import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const drawerWidth = 300;
@@ -71,7 +71,6 @@ function App(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  const [ value, setValue ] = useState('');
   const [ todos, setTodos ] = useState([]);
 
   const [ mobileOpen, setMobileOpen ] = useState(false);
@@ -79,12 +78,6 @@ function App(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    addTodo(value);
-    setValue('');
-  }
 
   const addTodo = text =>  {
     const newTodos = [...todos, { text, complete: false }];
@@ -174,28 +167,7 @@ function App(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete="off"
-          onSubmit={handleSubmit}>
-          <TextField
-            id="outlined-helperText"
-            label="Enter Todo"
-            variant="outlined"
-            value={value}
-            onChange={e => setValue(e.target.value)}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            className={classes.button}
-            startIcon={<SaveIcon />}
-          >
-            Save
-          </Button>
-        </form>
+        <TodoForm addTodo={addTodo} />
         <Grid item xs={12}>
           <List>
             {todos && todos.map((todo, index) => (
