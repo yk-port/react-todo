@@ -22,29 +22,11 @@ const useStyles = makeStyles((theme) => ({
 
 function App(props) {
   const classes = useStyles();
-  const [ todos, setTodos ] = useState([]);
   const [ mobileOpen, setMobileOpen ] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  const addTodo = text =>  {
-    const newTodos = [...todos, { text, complete: false }];
-    setTodos(newTodos);
-  }
-
-  const removeTodo = index => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
-  }
-
-  const completeTodo = index => {
-    const newTodos = [...todos];
-    newTodos[index].complete = !newTodos[index].complete;
-    setTodos(newTodos);
-  }
 
   return (
     <div className={classes.root}>
