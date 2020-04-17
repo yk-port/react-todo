@@ -1,28 +1,22 @@
 import React, { useState } from 'react';
 import TodoForm from './TodoForm'
+import TodoList from './TodoList'
 
 import {
   AppBar,
   CssBaseline,
   Drawer,
-  Grid,
   Hidden,
   IconButton,
   List,
   ListItem,
   ListItemText,
-  ListItemSecondaryAction,
   Toolbar,
   Typography,
-  Button,
   makeStyles,
   useTheme
 } from '@material-ui/core';
-
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 const drawerWidth = 300;
 
@@ -163,23 +157,10 @@ function App(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <TodoForm addTodo={addTodo} />
-        <Grid item xs={12}>
-          <List>
-            {todos && todos.map((todo, index) => (
-              <ListItem button key={index}>
-                <ListItemText primary={todo.text} />
-                <Button variant="outlined" size="small" color="default" className={classes.button} onClick={() => completeTodo(index)}>
-                  {todo.complete ? 'done!!' : 'doning...'}
-                </Button>
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete" onClick={() => removeTodo(index)}>
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
-        </Grid>
+        <TodoList
+          todos={todos}
+          completeTodo={completeTodo}
+          removeTodo={removeTodo} />
       </main>
     </div>
   );
