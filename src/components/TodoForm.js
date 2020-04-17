@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { TodosContext } from '../contexts/TodosContext';
 
 import {
   TextField,
@@ -20,7 +21,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function TodoForm({ addTodo }) {
+function TodoForm() {
+  const { addTodo } = useContext(TodosContext);
   const [ value, setValue ] = useState('');
   const classes = useStyles();
 
