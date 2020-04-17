@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import TodoForm from './TodoForm'
-import TodoList from './TodoList'
-import HeaderBar from './HeaderBar'
-import SideBar from './SideBar'
+import TodoForm from './TodoForm';
+import TodoList from './TodoList';
+import HeaderBar from './HeaderBar';
+import SideBar from './SideBar';
+import TodosContextProvider from '../contexts/TodoContext';
 
 import {
   CssBaseline,
@@ -38,11 +39,10 @@ function App(props) {
         handleDrawerToggle={handleDrawerToggle} />
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <TodoForm addTodo={addTodo} />
-        <TodoList
-          todos={todos}
-          completeTodo={completeTodo}
-          removeTodo={removeTodo} />
+        <TodosContextProvider>
+          <TodoForm />
+          <TodoList />
+        </TodosContextProvider>
       </main>
     </div>
   );
