@@ -7,9 +7,8 @@
 ***
 
 ## state構成
-### groupState
 ```
-const groupState = {
+state = {
   groupList: [
     { id: '1', label: '全て' },
     { id: '2', label: '優先度：高' },
@@ -17,12 +16,6 @@ const groupState = {
     { id: '4', label: '優先度：低' },
   ],
   selectedGroup: 1,
-}
-```
-
-### todoState
-```
-const todoState = {
   todoList: {
     '全て': [
       { id: 1, label: 'Todo1', flag: 'high', completed: false },
@@ -41,3 +34,26 @@ const todoState = {
   },
 }
 ```
+
+## Actions
+```
+ADD_TODO
+EDIT_TODO
+COMPLETE_TODO
+DELETE_TODO
+
+ADD_GROUP
+EDIT_GROUP
+DELETE_GROUP
+SELECT_GROUP
+```
+
+## Reducers
+`todoReducer`
+| ADD_TODO | EDIT_TODO | COMPLETE_TODO | DELETE_TODO |
+| :------: | :-------: | :-----------: | :---------: |
+| todoオブジェクトを追加 | 選択されたidのlabelを変更 | 選択されたidのcompleteのbooleanを切替 | 選択されたidのオブジェクトを削除 |
+`groupReducer`
+| ADD_GROUP | EDIT_GROUP | SELECT_GROUP | DELETE_GROUP |
+| :-------: | :--------: | :----------: | :----------: |
+| groupオブジェクトを追加 | 選択されたidのlabelを変更 | selectedGroupの値を選択されたidに変更 | 選択されたidのオブジェクトを削除 |
