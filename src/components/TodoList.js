@@ -20,19 +20,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function TodoList() {
-  const { todos, completeTodo, removeTodo } = useContext(TodosContext);
+  const { state } = useContext(TodosContext);
   const classes = useStyles();
   return (
     <Grid item xs={12}>
       <List>
-        {todos && todos.map((todo, index) => (
+        {state && state.map((todo, index) => (
           <ListItem button key={index}>
-            <ListItemText primary={todo.todoItem} />
-            <Button variant="outlined" size="small" color="default" className={classes.button} onClick={() => completeTodo(index)}>
+            <ListItemText primary={todo.label} />
+            <Button variant="outlined" size="small" color="default" className={classes.button}>
               {todo.complete ? 'done!!' : 'doning...'}
             </Button>
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete" onClick={() => removeTodo(index)}>
+              <IconButton edge="end" aria-label="delete">
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
