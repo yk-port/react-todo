@@ -12,9 +12,11 @@ const todoReducer = (state = [], action) => {
       const id = length === 0 ? 1 : state[length - 1].id + 1
       return [...state, { id, ...todo }]
     case COMPLETE_TODO:
-      return state
+      const todos = [...state]
+      todos[action.id - 1].complete = !todos[action.id - 1].complete
+      return todos
     case DELETE_TODO:
-      return state
+      return state.filter(todo => todo.id !== action.id)
     default:
       return state
   }
