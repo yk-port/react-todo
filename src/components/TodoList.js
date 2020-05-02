@@ -28,8 +28,9 @@ function TodoList() {
     dispatch({ type: COMPLETE_TODO, id })
   }
 
-  const deleteTodo = id => {
-    dispatch({ type: DELETE_TODO, id })
+  const deleteTodo = ({ id, label }) => {
+    const result = window.confirm(`本当にラベル名：${label}を削除してもいいですか？`)
+    if (result) dispatch({ type: DELETE_TODO, id })
   }
 
   return (
@@ -42,7 +43,7 @@ function TodoList() {
               {todo.complete ? 'done!!' : 'doning...'}
             </Button>
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete" onClick={() => deleteTodo(todo.id)}>
+              <IconButton edge="end" aria-label="delete" onClick={() => deleteTodo(todo)}>
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
