@@ -1,10 +1,6 @@
-import React, { useState, useContext } from 'react';
-import { TodosContext } from '../contexts/TodosContext';
-import {
-  ADD_TODO,
-  // COMPLETE_TODO,
-  // DELETE_TODO
-} from '../actions'
+import React, { useState, useContext } from 'react'
+import { TodosContext } from '../contexts/TodosContext'
+import { ADD_TODO } from '../actions'
 
 import {
   TextField,
@@ -27,8 +23,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function TodoForm() {
-  const { dispatch } = useContext(TodosContext);
-  const [ todoItem, setTodoItem ] = useState('');
+  const { dispatch } = useContext(TodosContext)
+  const [ todoItem, setTodoItem ] = useState('')
   const classes = useStyles();
 
   const addTodo = e =>  {
