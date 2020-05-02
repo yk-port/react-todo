@@ -1,5 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { TodosContext } from '../contexts/TodosContext';
+import {
+  ADD_TODO,
+  // COMPLETE_TODO,
+  // DELETE_TODO
+} from '../actions'
 
 import {
   TextField,
@@ -22,13 +27,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function TodoForm() {
-  const { addTodo } = useContext(TodosContext);
+  const { dispatch } = useContext(TodosContext);
   const [ todoItem, setTodoItem ] = useState('');
   const classes = useStyles();
 
-  const handleSubmit = e => {
+  const addTodo = e =>  {
     e.preventDefault();
-    addTodo(todoItem);
+    dispatch({
+      type: ADD_TODO,
+      label: todoItem,
+      complete: false
+    })
     setTodoItem('');
   }
 
@@ -37,7 +46,7 @@ function TodoForm() {
       className={classes.form}
       noValidate
       autoComplete="off"
-      onSubmit={handleSubmit}>
+      onSubmit={addTodo}>
       <TextField
         id="outlined-helperText"
         label="Enter Todo"
