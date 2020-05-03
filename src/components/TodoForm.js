@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
 function TodoForm() {
   const { dispatch } = useContext(TodosContext)
   const [ todoItem, setTodoItem ] = useState('')
+
   const classes = useStyles();
 
   const addTodo = e =>  {
