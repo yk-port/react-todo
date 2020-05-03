@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import todoReducer from './todoReducer'
-import groupReducer from './groupReducer'
+import todos from './todos'
+import groups from './groups'
 
 export default combineReducers({
-  todoReducer,
-  groupReducer
+  todos,
+  groups
 })
