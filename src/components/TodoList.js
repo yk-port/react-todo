@@ -36,7 +36,7 @@ function TodoList() {
   return (
     <Grid item xs={12}>
       <List>
-        {state && state.map((todo, index) => (
+        {state.todos.map((todo, index) => (
           <ListItem button key={index}>
             <ListItemText primary={todo.label} />
             <Button variant="outlined" size="small" color="default" className={classes.button} onClick={() => completeTodo(todo.id)}>
