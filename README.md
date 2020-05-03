@@ -53,6 +53,7 @@ SELECT_GROUP
 | ADD_TODO | EDIT_TODO | COMPLETE_TODO | DELETE_TODO |
 | :------: | :-------: | :-----------: | :---------: |
 | todoオブジェクトを追加 | 選択されたidのlabelを変更 | 選択されたidのcompleteのbooleanを切替 | 選択されたidのオブジェクトを削除 |
+
 `groupReducer`
 | ADD_GROUP | EDIT_GROUP | SELECT_GROUP | DELETE_GROUP |
 | :-------: | :--------: | :----------: | :----------: |
