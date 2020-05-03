@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
-import { TodosContext } from '../contexts/TodosContext';
+import React, { useContext } from 'react'
+import { TodosContext } from '../contexts/TodosContext'
+import { COMPLETE_TODO, DELETE_TODO } from '../actions'
 
 import {
   Grid,
@@ -20,19 +21,29 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function TodoList() {
-  const { todos, completeTodo, removeTodo } = useContext(TodosContext);
-  const classes = useStyles();
+  const { state, dispatch } = useContext(TodosContext)
+  const classes = useStyles()
+
+  const completeTodo = id => {
+    dispatch({ type: COMPLETE_TODO, id })
+  }
+
+  const deleteTodo = ({ id, label }) => {
+    const result = window.confirm(`本当にラベル名：${label}を削除してもいいですか？`)
+    if (result) dispatch({ type: DELETE_TODO, id })
+  }
+
   return (
     <Grid item xs={12}>
       <List>
-        {todos && todos.map((todo, index) => (
+        {state && state.map((todo, index) => (
           <ListItem button key={index}>
-            <ListItemText primary={todo.text} />
-            <Button variant="outlined" size="small" color="default" className={classes.button} onClick={() => completeTodo(index)}>
+            <ListItemText primary={todo.label} />
+            <Button variant="outlined" size="small" color="default" className={classes.button} onClick={() => completeTodo(todo.id)}>
               {todo.complete ? 'done!!' : 'doning...'}
             </Button>
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete" onClick={() => removeTodo(index)}>
+              <IconButton edge="end" aria-label="delete" onClick={() => deleteTodo(todo)}>
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
