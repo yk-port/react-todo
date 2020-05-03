@@ -1,10 +1,17 @@
 import React, { createContext, useReducer } from 'react'
-import todoReducer from '../reducers/todoReducer'
+import reducer from '../reducers'
 
 export const AppContext = createContext()
 
 const AppContextProvider = props => {
-  const [ state, dispatch ] = useReducer(todoReducer, [])
+  const initialState = {
+    groups: [],
+    selectedGroup: 1,
+    todos: [],
+  }
+  const [ state, dispatch ] = useReducer(reducer, initialState)
+
+  console.log(state)
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
