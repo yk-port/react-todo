@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { TodosContext } from '../contexts/TodosContext'
+import { AppContext } from '../contexts/AppContext'
 import { ADD_TODO } from '../actions'
 
 import {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function TodoForm() {
-  const { dispatch } = useContext(TodosContext)
+  const { dispatch } = useContext(AppContext)
   const [ todoItem, setTodoItem ] = useState('')
 
   const classes = useStyles();

@@ -3,7 +3,7 @@ import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import HeaderBar from './HeaderBar';
 import SideBar from './SideBar';
-import TodosContextProvider from '../contexts/TodosContext';
+import AppContextProvider from '../contexts/AppContext';
 
 import {
   CssBaseline,
@@ -31,19 +31,19 @@ function App(props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <HeaderBar
-        handleDrawerToggle={handleDrawerToggle} />
-      <SideBar
-        mobileOpen={mobileOpen}
-        handleDrawerToggle={handleDrawerToggle} />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <TodosContextProvider>
-          <TodoForm />
-          <TodoList />
-        </TodosContextProvider>
-      </main>
+      <AppContextProvider>
+        <CssBaseline />
+        <HeaderBar
+          handleDrawerToggle={handleDrawerToggle} />
+        <SideBar
+          mobileOpen={mobileOpen}
+          handleDrawerToggle={handleDrawerToggle} />
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+            <TodoForm />
+            <TodoList />
+        </main>
+      </AppContextProvider>
     </div>
   );
 }

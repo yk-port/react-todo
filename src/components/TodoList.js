@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { TodosContext } from '../contexts/TodosContext'
+import { AppContext } from '../contexts/AppContext'
 import { COMPLETE_TODO, DELETE_TODO } from '../actions'
 
 import {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function TodoList() {
-  const { state, dispatch } = useContext(TodosContext)
+  const { state, dispatch } = useContext(AppContext)
   const classes = useStyles()
 
   const completeTodo = id => {
@@ -36,7 +36,7 @@ function TodoList() {
   return (
     <Grid item xs={12}>
       <List>
-        {state && state.map((todo, index) => (
+        {state.todos.map((todo, index) => (
           <ListItem button key={index}>
             <ListItemText primary={todo.label} />
             <Button variant="outlined" size="small" color="default" className={classes.button} onClick={() => completeTodo(todo.id)}>

@@ -4,7 +4,7 @@ import {
   DELETE_TODO
 } from '../actions'
 
-const todoReducer = (state = [], action) => {
+const todos = (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:
       const todo = { label: action.label, complete: action.complete }
@@ -22,4 +22,4 @@ const todoReducer = (state = [], action) => {
   }
 }
 
-export default todoReducer
+export default todos
