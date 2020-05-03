@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { TodosContext } from '../contexts/TodosContext'
+import { AppContext } from '../contexts/AppContext'
 import { COMPLETE_TODO, DELETE_TODO } from '../actions'
 
 import {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function TodoList() {
-  const { state, dispatch } = useContext(TodosContext)
+  const { state, dispatch } = useContext(AppContext)
   const classes = useStyles()
 
   const completeTodo = id => {

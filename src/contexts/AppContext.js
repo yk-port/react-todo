@@ -1,16 +1,16 @@
 import React, { createContext, useReducer } from 'react'
 import todoReducer from '../reducers/todoReducer'
 
-export const TodosContext = createContext()
+export const AppContext = createContext()
 
-const TodosContextProvider = props => {
+const AppContextProvider = props => {
   const [ state, dispatch ] = useReducer(todoReducer, [])
 
   return (
-    <TodosContext.Provider value={{ state, dispatch }}>
+    <AppContext.Provider value={{ state, dispatch }}>
       {props.children}
-    </TodosContext.Provider>
+    </AppContext.Provider>
   );
 }
 
-export default TodosContextProvider;
+export default AppContextProvider;
